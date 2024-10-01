@@ -2,6 +2,8 @@
 
 ## deepsearch-glm
 
+COPR [cheimes/deepsearch-glm](https://copr.fedorainfracloud.org/coprs/cheimes/deepsearch-glm/)
+
 ```mermaid
 ---
 title: deepsearch-glm build dependencies
@@ -20,7 +22,10 @@ flowchart LR
     sentencepiece --> gperftools
 ```
 
+
 ## libpdfium
+
+COPR [cheimes/libpdfium](https://copr.fedorainfracloud.org/coprs/cheimes/libpdfium/)
 
 ```mermaid
 ---
@@ -31,6 +36,22 @@ flowchart LR
     gn --> ROOT
     libpdfium --> gn
 ```
+
+
+## Triton LLVM
+
+COPR [cheimes/llvm-triton](https://copr.fedorainfracloud.org/coprs/cheimes/llvm-triton)
+
+```mermaid
+---
+title: Base dependencies
+---
+flowchart LR
+    ROOT{rhel9}
+    llvm-aotriton --> ROOT
+    llvm-triton --> ROOT
+```
+
 
 ## OpenCV
 

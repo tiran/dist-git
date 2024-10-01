@@ -5,7 +5,7 @@ Summary:        JSON schema validator for JSON for Modern C++
 
 License:        MIT
 URL:            https://github.com/pboettch/json-schema-validator
-Source0:        https://github.com/pboettch/json-schema-validator/archive/refs/tags/%{version}.tar.gz#/json-schema-validator-%{version}.tar.gz
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
@@ -27,7 +27,7 @@ Requires:       json-devel
 
 
 %prep
-%autosetup -n json-schema-validator-%{version}
+%autosetup -p1
 
 
 %build

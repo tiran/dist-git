@@ -13,7 +13,7 @@ Summary:  Efficient learning of word representations and sentence classification
 License:  MIT
 # fork of https://github.com/facebookresearch/fastText
 URL:      https://github.com/PeterStaar-IBM/fastText
-Source0:  https://github.com/PeterStaar-IBM/fastText/archive/%{commit}.tar.gz#/fastText-%{commitversion}-%{shortcommit}.tar.gz
+Source0:  %{url}/archive/%{commit}.tar.gz#/fastText-%{commitversion}-%{shortcommit}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake

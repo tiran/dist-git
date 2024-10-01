@@ -1,0 +1,12 @@
+FROM quay.io/centos/centos:stream9
+RUN dnf config-manager --set-enabled crb
+RUN dnf copr -y enable cheimes/deepsearch-glm rhel-9-x86_64
+#RUN dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
+#    && dnf clean all
+RUN dnf install -y --nodocs \
+        gcc gcc-c++ git make cmake pkgconfig ninja-build glibc-devel \
+        python3.11 python3.11-devel \
+        libjpeg-turbo-devel libpng-devel zlib-devel \
+        cxxopts-devel fasttext-devel fmt-devel json-schema-validator-devel \
+        loguru-devel sentencepiece-devel \
+    && dnf clean all

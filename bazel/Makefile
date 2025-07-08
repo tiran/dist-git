@@ -12,7 +12,7 @@ RELEASE_ID = $(shell grep '^ID=' /etc/*release | cut -d = -f 2 | tr -d \")
 SUDO =
 
 ifneq ($(shell id -u),0)
-SUDO = sudo
+SUDO = echo
 endif
 
 default: rpm
@@ -28,7 +28,7 @@ name:
 	@echo "  VERSION: $(VERSION)"
 	@echo "  RELEASE: $(RELEASE)"
 
-rpm: .deps.$(RELEASE_ID) .builddep.$(RELEASE_ID)
+rpm: .deps.$(RELEASE_ID) .builddep.$(RELEASE_ID) bazel-$(VERSION)-dist.zip
 	rpmbuild \
                 --define '_sourcedir $(pwd)' \
                 --define '_specdir $(pwd)' \
@@ -45,6 +45,9 @@ new-version: $(spec)
 # https://developer.fedoraproject.org/deployment/copr/copr-cli.html
 copr: $(NVR).src.rpm
 	copr-cli build bazel $(NVR).src.rpm
+
+bazel-$(VERSION)-dist.zip:
+	spectool -g ./$(spec)
 
 $(NVR).src.rpm: .deps.$(RELEASE_ID) $(spec) $(wildcard *.diff)
 	rpmbuild \
@@ -114,4 +117,3 @@ rebuild: .deps.$(RELEASE_ID) .builddep.$(RELEASE_ID) $(NVR).src.rpm
 
 clean:
 	rm -rf *~ *.rpm noarch .builddep.$(RELEASE_ID) .deps.$(RELEASE_ID) $(shell uname -m)/ $(NAME)-$(VERSION)/ .container*
-
